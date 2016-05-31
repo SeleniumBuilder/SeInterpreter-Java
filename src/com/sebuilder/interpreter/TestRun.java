@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 /**
@@ -224,6 +225,10 @@ public class TestRun {
 		if (s == null) {
 			throw new RuntimeException("Missing parameter \"" + paramName + "\" at step #" +
 					(stepIndex + 1) + ".");
+		}
+		// Sub special keys using the !{keyname} syntax.
+		for (Keys k : Keys.values()) {
+			s = s.replace("!{" + k.name() + "}", k.toString());
 		}
 		// This kind of variable substitution makes for short code, but it's inefficient.
 		for (Map.Entry<String, String> v : vars.entrySet()) {

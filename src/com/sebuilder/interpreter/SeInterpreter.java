@@ -90,9 +90,7 @@ public class SeInterpreter {
 			log.info("Configuration successful but no paths to scripts specified. Exiting.");
 			System.exit(0);
 		}
-		
-		HashMap<String, String> cfg = new HashMap<String, String>(driverConfig);
-		
+				
 		for (String path : paths) {
 			try {
 				TestRun lastRun = null;
